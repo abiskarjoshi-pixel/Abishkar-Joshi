@@ -1,0 +1,10 @@
+{
+  "description": "A visually rich portfolio site showcasing photography and films with warm Himalayan-inspired design, intuitive navigation, and seamless project browsing.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

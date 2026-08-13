@@ -1,0 +1,212 @@
+import { useEffect, useRef, useState } from 'react'
+import RevealOnScroll from '../components/RevealOnScroll'
+import Footer from '../components/Footer'
+import { useSEO } from '../hooks/useSEO'
+
+const lines = [
+  'I grew up watching light move across the Kathmandu valley.',
+  'Became a photographer by accident. Stayed by choice.',
+  'Available worldwide. Based in Nepal.',
+]
+
+function TypeInLine({ text, active }: { text: string; active: boolean }) {
+  const [displayed, setDisplayed] = useState('')
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  useEffect(() => {
+    if (!active || reduced) {
+      setDisplayed(text)
+      return
+    }
+    setDisplayed('')
+    let i = 0
+    const interval = setInterval(() => {
+      i++
+      setDisplayed(text.slice(0, i))
+      if (i >= text.length) clearInterval(interval)
+    }, 40)
+    return () => clearInterval(interval)
+  }, [active, text, reduced])
+
+  return <span>{displayed}</span>
+}
+
+function TypeInSection() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(false)
+  const [lineIndex, setLineIndex] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setActive(true)
+        obs.unobserve(el)
+      }
+    }, { threshold: 0.5 })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!active) return
+    const t = setTimeout(() => {
+      if (lineIndex < lines.length - 1) setLineIndex((i) => i + 1)
+    }, lines[lineIndex].length * 40 + 400)
+    return () => clearTimeout(t)
+  }, [active, lineIndex])
+
+  return (
+    <div ref={ref} className="space-y-4">
+      {lines.map((line, i) => (
+        <p
+          key={i}
+          className="text-sm leading-relaxed"
+          style={{
+            color: 'rgba(33,29,24,0.65)',
+            opacity: i <= lineIndex || !active ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+          }}
+        >
+          {i <= lineIndex ? <TypeInLine text={line} active={i === lineIndex && active} /> : null}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+export default function About() {
+  useSEO({
+    title: 'About',
+    description: 'Kathmandu-based photographer and filmmaker with fifteen years shooting across Nepal and South Asia. Weddings, portraits, editorial, landscape, documentary.',
+    url: '/about',
+  })
+  return (
+    <div style={{ backgroundColor: 'var(--bone)', fontFamily: 'var(--font-body)' }}>
+      {/* Hero split */}
+      <div className="min-h-[90vh] grid md:grid-cols-2" style={{ paddingTop: '4rem' }}>
+        {/* Portrait */}
+        <div className="relative h-[60vh] md:h-auto" style={{ backgroundColor: 'var(--charcoal)' }}>
+          <img
+            src="https://images.unsplash.com/photo-1659346031868-86f45634e4ee?w=900&h=1200&fit=crop&auto=format&sat=-100"
+            alt="Abishkar Joshi — portrait"
+            className="w-full h-full object-cover"
+            style={{ filter: 'grayscale(100%) contrast(1.05)' }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 h-32"
+            style={{ background: 'linear-gradient(to top, var(--bone), transparent)' }}
+          />
+        </div>
+
+        {/* Bio */}
+        <div className="flex flex-col justify-end px-8 md:px-16 py-16 md:py-24">
+          <RevealOnScroll>
+            <div className="w-8 h-px mb-8" style={{ background: 'var(--terracotta)' }} />
+            <h1
+              className="font-light mb-8"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.5rem, 5vw, 5rem)',
+                color: 'var(--ink)',
+                lineHeight: 0.95,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Abishkar<br /><em>Joshi</em>
+            </h1>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '45ch' }}>
+              Kathmandu-based photographer and filmmaker with fifteen years shooting across Nepal and South Asia.
+              I work across weddings, portraits, editorial, landscape, and documentary — drawn wherever there is good light
+              and a story worth telling.
+            </p>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '45ch' }}>
+              My work has appeared in <em style={{ fontFamily: 'var(--font-display)' }}>Himal Southasian</em>,{' '}
+              <em style={{ fontFamily: 'var(--font-display)' }}>ECS Nepal</em>, and editorial commissions
+              for weavers, restaurants, NGOs, and private clients across the subcontinent.
+            </p>
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '45ch' }}>
+              Before photography, a degree in fine art. Before that, too many hours watching the light move across the Kathmandu valley.
+            </p>
+          </RevealOnScroll>
+        </div>
+      </div>
+
+      {/* Type-in section */}
+      <section className="py-24 md:py-36 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+        <RevealOnScroll>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="w-8 h-px mb-6" style={{ background: 'var(--terracotta)' }} />
+              <h2
+                className="font-light italic"
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(1.5rem, 3vw, 3rem)',
+                  color: 'var(--ink)',
+                  lineHeight: 1.2,
+                }}
+              >
+                In three sentences
+              </h2>
+            </div>
+            <TypeInSection />
+          </div>
+        </RevealOnScroll>
+      </section>
+
+      {/* Services */}
+      <section
+        className="py-24 md:py-36 px-6 md:px-12 lg:px-20"
+        style={{ backgroundColor: 'var(--charcoal)' }}
+      >
+        <div className="max-w-[1440px] mx-auto">
+          <RevealOnScroll>
+            <h2
+              className="font-light mb-16"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2rem, 4vw, 4rem)',
+                color: 'var(--cream)',
+              }}
+            >
+              What I do
+            </h2>
+          </RevealOnScroll>
+
+          <div className="grid md:grid-cols-3 gap-px" style={{ background: 'rgba(245,241,234,0.08)' }}>
+            {[
+              { title: 'Weddings', desc: 'Full coverage from ceremony to celebration. Candid-led, respectful of the ritual.' },
+              { title: 'Editorial & Fashion', desc: 'Commercial commissions for brands, collectives, and publications.' },
+              { title: 'Landscape & Travel', desc: 'Nepal, India, Southeast Asia. Long-form assignments and personal work.' },
+              { title: 'Portraits', desc: 'Environmental and studio. Individuals, families, and corporate.' },
+              { title: 'Documentary Film', desc: 'Short-form documentary, brand film, and event coverage.' },
+              { title: 'Design', desc: 'Visual identity and art direction for small studios and cultural organisations.' },
+            ].map((item, i) => (
+              <RevealOnScroll key={i} delay={i * 60}>
+                <div className="p-8 md:p-10" style={{ background: 'var(--charcoal)' }}>
+                  <h3
+                    className="font-light mb-3"
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.4rem',
+                      color: 'var(--cream)',
+                    }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(245,241,234,0.55)' }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}
