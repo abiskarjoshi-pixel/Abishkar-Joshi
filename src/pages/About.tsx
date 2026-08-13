@@ -5,9 +5,9 @@ import { useSEO } from '../hooks/useSEO'
 import abishkarImg from '../Abishkar.jpg'
 
 const lines = [
-  'I grew up watching light move across the Kathmandu valley.',
-  'Became a photographer by accident. Stayed by choice.',
-  'Available worldwide. Based in Nepal.',
+  'Artist working out of Nepal — photography, films & design.',
+  'Capturing candid moments, genuine expressions & natural lighting.',
+  'Keep it simple, intentional & genuine.',
 ]
 
 function TypeInLine({ text, active }: { text: string; active: boolean }) {

@@ -258,14 +258,14 @@ export default function Home() {
               className="font-light italic"
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.5rem, 3vw, 3.5rem)',
+                fontSize: 'clamp(1.4rem, 2.5vw, 2.8rem)',
                 color: 'var(--ink)',
-                maxWidth: '26ch',
+                maxWidth: '38ch',
                 margin: '0 auto 2rem',
-                lineHeight: 1.2,
+                lineHeight: 1.3,
               }}
             >
-              "Light is the subject. Everything else is context."
+              "Great visuals are not a product of expensive cameras and lenses. It takes patience, keen observation and knowledge of the people or places in front of the camera lens."
             </p>
             <div className="w-12 h-px mx-auto" style={{ background: 'var(--gold)' }} />
             <p className="mt-6 text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(33,29,24,0.35)' }}>
