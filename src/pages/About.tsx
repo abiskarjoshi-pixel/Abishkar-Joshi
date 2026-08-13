@@ -85,50 +85,50 @@ export default function About() {
   })
   return (
     <div style={{ backgroundColor: 'var(--bone)', fontFamily: 'var(--font-body)' }}>
-      {/* Hero split */}
-      <div className="min-h-[90vh] grid md:grid-cols-2" style={{ paddingTop: '4rem' }}>
-        {/* Portrait */}
-        <div className="relative flex items-center justify-center p-4 md:p-8 min-h-[60vh] md:min-h-[85vh]" style={{ backgroundColor: 'var(--charcoal)' }}>
+      {/* Full-width Hero Image Section */}
+      <div className="pt-24 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
+        <div className="w-full overflow-hidden rounded-sm shadow-sm">
           <img
             src={abishkarImg}
-            alt="Abishkar Joshi — portrait"
-            className="w-full h-auto max-h-[85vh] object-contain"
+            alt="Abishkar Joshi"
+            className="w-full h-auto block"
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
+      </div>
 
-        {/* Bio */}
-        <div className="flex flex-col justify-end px-8 md:px-16 py-16 md:py-24">
-          <RevealOnScroll>
-            <div className="w-8 h-px mb-8" style={{ background: 'var(--terracotta)' }} />
-            <h1
-              className="font-light mb-8"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2.5rem, 5vw, 5rem)',
-                color: 'var(--ink)',
-                lineHeight: 0.95,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Abishkar<br /><em>Joshi</em>
-            </h1>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '50ch' }}>
-              I am an artist working out of Nepal, specialising in photography, films and design. In my career thus far, I have gotten the opportunity to capture various events, ranging from intimate weddings and fashion editorials to tranquil landscapes and portraitures.
-            </p>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
-              I like capturing candid moments—genuine expressions, natural lighting and the stories revealed through them. Whether I am capturing people in a photograph, making a film or designing visual branding, my philosophy remains the same—keep it simple, intentional and genuine.
-            </p>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
-              Great visuals are not a product of expensive cameras and lenses. It takes patience, keen observation and knowledge of the people or places in front of the camera lens.
-            </p>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
-              This platform is a compilation of the work that inspires me—the people, places, emotions and ideas that I have been blessed to create over the course of my career.
-            </p>
-            <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--terracotta)', maxWidth: '50ch' }}>
-              Thank you for visiting.
-            </p>
-          </RevealOnScroll>
-        </div>
+      {/* Bio Section */}
+      <div className="py-16 md:py-24 px-6 md:px-12 lg:px-20 max-w-[1000px] mx-auto">
+        <RevealOnScroll>
+          <div className="w-8 h-px mb-8" style={{ background: 'var(--terracotta)' }} />
+          <h1
+            className="font-light mb-8"
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.5rem, 5vw, 5rem)',
+              color: 'var(--ink)',
+              lineHeight: 0.95,
+              letterSpacing: '-0.02em',
+            }}
+          >
+            Abishkar<br /><em>Joshi</em>
+          </h1>
+          <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.85)', maxWidth: '65ch' }}>
+            I am an artist working out of Nepal, specialising in photography, films and design. In my career thus far, I have gotten the opportunity to capture various events, ranging from intimate weddings and fashion editorials to tranquil landscapes and portraitures.
+          </p>
+          <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '65ch' }}>
+            I like capturing candid moments—genuine expressions, natural lighting and the stories revealed through them. Whether I am capturing people in a photograph, making a film or designing visual branding, my philosophy remains the same—keep it simple, intentional and genuine.
+          </p>
+          <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '65ch' }}>
+            Great visuals are not a product of expensive cameras and lenses. It takes patience, keen observation and knowledge of the people or places in front of the camera lens.
+          </p>
+          <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '65ch' }}>
+            This platform is a compilation of the work that inspires me—the people, places, emotions and ideas that I have been blessed to create over the course of my career.
+          </p>
+          <p className="text-base leading-relaxed font-medium" style={{ color: 'var(--terracotta)', maxWidth: '65ch' }}>
+            Thank you for visiting.
+          </p>
+        </RevealOnScroll>
       </div>
 
       {/* Type-in section */}
