@@ -72,7 +72,7 @@ export default function Home() {
           className="parallax-layer relative z-10 h-full flex flex-col justify-end pb-20 px-6 md:px-12 lg:px-20"
           style={{ transform: `translateY(${-scrollY * 0.15}px)` }}
         >
-          <p className="text-xs tracking-[0.35em] uppercase mb-6" style={{ color: 'var(--terracotta)' }}>
+          <p className="text-xs tracking-[0.35em] uppercase mb-6" style={{ color: '#ffffff', opacity: 0.9 }}>
             Photography · Films · Design
           </p>
           <h1

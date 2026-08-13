@@ -88,15 +88,11 @@ export default function About() {
       {/* Hero split */}
       <div className="min-h-[90vh] grid md:grid-cols-2" style={{ paddingTop: '4rem' }}>
         {/* Portrait */}
-        <div className="relative h-[60vh] md:h-auto" style={{ backgroundColor: 'var(--charcoal)' }}>
+        <div className="relative flex items-center justify-center p-4 md:p-8 min-h-[60vh] md:min-h-[85vh]" style={{ backgroundColor: 'var(--charcoal)' }}>
           <img
             src={abishkarImg}
             alt="Abishkar Joshi — portrait"
-            className="w-full h-full object-cover object-center"
-          />
-          <div
-            className="absolute bottom-0 left-0 right-0 h-32"
-            style={{ background: 'linear-gradient(to top, var(--bone), transparent)' }}
+            className="w-full h-auto max-h-[85vh] object-contain"
           />
         </div>
 
