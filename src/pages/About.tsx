@@ -80,7 +80,7 @@ function TypeInSection() {
 export default function About() {
   useSEO({
     title: 'About',
-    description: 'Kathmandu-based photographer and filmmaker with fifteen years shooting across Nepal and South Asia. Weddings, portraits, editorial, landscape, documentary.',
+    description: 'Artist working out of Nepal, specialising in photography, films and design. Photography, films, and visual branding.',
     url: '/about',
   })
   return (
@@ -116,18 +116,20 @@ export default function About() {
             >
               Abishkar<br /><em>Joshi</em>
             </h1>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '45ch' }}>
-              Kathmandu-based photographer and filmmaker with fifteen years shooting across Nepal and South Asia.
-              I work across weddings, portraits, editorial, landscape, and documentary — drawn wherever there is good light
-              and a story worth telling.
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.75)', maxWidth: '50ch' }}>
+              I am an artist working out of Nepal, specialising in photography, films and design. In my career thus far, I have gotten the opportunity to capture various events, ranging from intimate weddings and fashion editorials to tranquil landscapes and portraitures.
             </p>
-            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '45ch' }}>
-              My work has appeared in <em style={{ fontFamily: 'var(--font-display)' }}>Himal Southasian</em>,{' '}
-              <em style={{ fontFamily: 'var(--font-display)' }}>ECS Nepal</em>, and editorial commissions
-              for weavers, restaurants, NGOs, and private clients across the subcontinent.
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
+              I like capturing candid moments—genuine expressions, natural lighting and the stories revealed through them. Whether I am capturing people in a photograph, making a film or designing visual branding, my philosophy remains the same—keep it simple, intentional and genuine.
             </p>
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '45ch' }}>
-              Before photography, a degree in fine art. Before that, too many hours watching the light move across the Kathmandu valley.
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
+              Great visuals are not a product of expensive cameras and lenses. It takes patience, keen observation and knowledge of the people or places in front of the camera lens.
+            </p>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(33,29,24,0.65)', maxWidth: '50ch' }}>
+              This platform is a compilation of the work that inspires me—the people, places, emotions and ideas that I have been blessed to create over the course of my career.
+            </p>
+            <p className="text-sm leading-relaxed font-medium" style={{ color: 'var(--terracotta)', maxWidth: '50ch' }}>
+              Thank you for visiting.
             </p>
           </RevealOnScroll>
         </div>
