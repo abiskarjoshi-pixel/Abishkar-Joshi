@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import RevealOnScroll from '../components/RevealOnScroll'
 import Footer from '../components/Footer'
 import { useSEO } from '../hooks/useSEO'
+import abishkarImg from '../Abishkar.jpg'
 
 const lines = [
   'I grew up watching light move across the Kathmandu valley.',
@@ -89,10 +90,9 @@ export default function About() {
         {/* Portrait */}
         <div className="relative h-[60vh] md:h-auto" style={{ backgroundColor: 'var(--charcoal)' }}>
           <img
-            src="https://images.unsplash.com/photo-1659346031868-86f45634e4ee?w=900&h=1200&fit=crop&auto=format&sat=-100"
+            src={abishkarImg}
             alt="Abishkar Joshi — portrait"
-            className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%) contrast(1.05)' }}
+            className="w-full h-full object-cover object-center"
           />
           <div
             className="absolute bottom-0 left-0 right-0 h-32"
