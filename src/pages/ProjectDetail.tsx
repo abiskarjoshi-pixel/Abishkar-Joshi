@@ -3,6 +3,7 @@ import { getProjectBySlug, getNextProject } from '../data/collections'
 import RevealOnScroll from '../components/RevealOnScroll'
 import Footer from '../components/Footer'
 import { useSEO } from '../hooks/useSEO'
+import PinterestGrid from '../components/PinterestGrid'
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -101,28 +102,9 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      {/* Full-bleed image sequence */}
-      <div className="space-y-2 md:space-y-4">
-        {project.photos.map((photo, i) => (
-          <RevealOnScroll key={photo.id} delay={i * 60}>
-            <div
-              className={`${i % 3 === 1 ? 'max-w-3xl mx-auto px-6 md:px-12' : 'w-full'}`}
-              style={{ backgroundColor: 'var(--charcoal)' }}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full block"
-                loading="lazy"
-                style={{
-                  aspectRatio: photo.width > photo.height ? '16/10' : '4/5',
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
-          </RevealOnScroll>
-        ))}
-      </div>
+      {/* Pinterest style image grid */}
+      <PinterestGrid photos={project.photos} />
+
 
       {/* Next project */}
       {next && (
