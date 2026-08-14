@@ -124,9 +124,9 @@ const buildHumanProjects = (): Project[] => {
 }
 
 const collectionMeta = [
-  { slug: 'design', name: 'Design', description: 'Creative direction, still-life studies, and visual identities.', folder: 'DESIGN' },
-  { slug: 'earth', name: 'Earth', description: 'Landscape, mountains, and sacred geography.', folder: 'EARTH' },
-  { slug: 'human', name: 'Human', description: 'Portraits, people, and intimate character studies.', folder: 'HUMAN' },
+  { slug: 'design', name: 'Design', description: 'Ideas made visible through image,form, type and material.', folder: 'DESIGN' },
+  { slug: 'earth', name: 'Earth', description: 'Mountains, places, fleeting moments, and the quiet poetry of everyday life.', folder: 'EARTH' },
+  { slug: 'human', name: 'Human', description: 'Portraits caught somewhere between memory, feeling, and dream.', folder: 'HUMAN' },
   { slug: 'love', name: 'Love', description: 'Weddings, union rituals, and tender emotion.', folder: 'LOVE' },
 ] as const
 

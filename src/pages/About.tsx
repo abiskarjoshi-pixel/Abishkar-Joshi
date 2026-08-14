@@ -215,6 +215,66 @@ export default function About() {
         </div>
       </section>
 
+      {/* Contact */}
+      <section className="py-24 md:py-36 px-6 md:px-12 lg:px-20" style={{ backgroundColor: 'var(--bone)' }}>
+        <div className="max-w-[1440px] mx-auto">
+          <RevealOnScroll>
+            <div className="w-8 h-px mb-8" style={{ background: 'var(--terracotta)' }} />
+            <h2
+              className="font-light mb-16"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2rem, 4vw, 4rem)',
+                color: 'var(--ink)',
+                lineHeight: 1,
+              }}
+            >
+              Get in touch
+            </h2>
+          </RevealOnScroll>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+            {[
+              {
+                label: 'Email',
+                value: 'abiskar.joshi@gmail.com',
+                href: 'mailto:abiskar.joshi@gmail.com',
+              },
+              {
+                label: 'Phone',
+                value: '+977 9843669303',
+                href: 'tel:+9779843669303',
+              },
+              {
+                label: 'Instagram',
+                value: '@abishkar_jo_c',
+                href: 'https://www.instagram.com/abishkar_jo_c',
+              },
+              {
+                label: 'Behance',
+                value: 'abishkarjoshi',
+                href: 'https://www.behance.net/abishkarjoshi',
+              },
+            ].map((item, i) => (
+              <RevealOnScroll key={i} delay={i * 80}>
+                <p className="text-xs tracking-[0.2em] uppercase mb-2" style={{ color: 'var(--terracotta)' }}>
+                  {item.label}
+                </p>
+                <a
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="text-sm md:text-base transition-opacity hover:opacity-70"
+                  style={{ color: 'var(--ink)', textDecoration: 'none' }}
+                >
+                  {item.value}
+                </a>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   )
