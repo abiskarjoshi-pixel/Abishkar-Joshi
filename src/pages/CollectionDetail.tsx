@@ -90,7 +90,7 @@ export default function CollectionDetail() {
               <div>
                 <p className="text-xs tracking-[0.26em] uppercase mb-2" style={{ color: 'var(--terracotta)' }}>Year</p>
                 <p className="text-2xl md:text-3xl" style={{ fontFamily: 'var(--font-display)', color: 'var(--ink)' }}>
-                  {collection.projects[0]?.year ?? '2024'}
+                  {collection.projects[0]?.year ?? '2017-2026'}
                 </p>
               </div>
 

@@ -42,8 +42,8 @@ export default function Films() {
           >
             Films
           </h1>
-          <p className="mt-6 text-sm" style={{ color: 'rgba(245,241,234,0.5)', maxWidth: '48ch' }}>
-            Short documentaries, editorial films, and brand work — the same eye as the still photography, with more time to breathe.
+          <p className="mt-6 text-sm" style={{ color: 'rgba(245,241,234,0.5)', maxWidth: '56ch' }}>
+            Short documentaries, music videos, editorial films, and branded stories—moving images shaped by the same eye for atmosphere, emotion, and detail as my photography.
           </p>
         </RevealOnScroll>
       </div>
@@ -95,9 +95,11 @@ export default function Films() {
 
                 {/* Film info */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--terracotta)' }}>
-                    {film.year} · {film.duration}
-                  </p>
+                  {(film.role) && (
+                    <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--terracotta)' }}>
+                      {film.role}
+                    </p>
+                  )}
                   <h2
                     className="font-light"
                     style={{

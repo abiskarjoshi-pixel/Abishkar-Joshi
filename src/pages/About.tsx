@@ -253,7 +253,7 @@ export default function About() {
               {
                 label: 'Behance',
                 value: 'abishkarjoshi',
-                href: 'https://www.behance.net/abishkarjoshi',
+                href: 'https://www.instagram.com/abishkar_jo_c/',
               },
             ].map((item, i) => (
               <RevealOnScroll key={i} delay={i * 80}>

@@ -4,6 +4,7 @@ import { collections, type Project } from '../data/collections'
 import RevealOnScroll from '../components/RevealOnScroll'
 import Footer from '../components/Footer'
 import { useSEO } from '../hooks/useSEO'
+import heroImg from '../Photos/EARTH/INFI1450.jpg'
 
 const TABS = ['All Works', 'Design', 'Earth', 'Human', 'Love'] as const
 type Tab = (typeof TABS)[number]
@@ -52,15 +53,12 @@ export default function Home() {
         style={{ height: '100svh' }}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <video
+          <img
+            src={heroImg}
+            alt="Abishkar Joshi"
             className="w-full h-full object-cover"
             style={{ transform: `translateY(${parallaxY}px)`, transition: 'none' }}
-            autoPlay muted loop playsInline
-            poster="https://images.unsplash.com/photo-1696149479584-d2506b811ba2?w=1920&h=1080&fit=crop&auto=format"
-            aria-hidden="true"
-          >
-            <source src="https://cdn.coverr.co/videos/coverr-himalayan-mountains-at-sunset-1634/1080p.mp4" type="video/mp4" />
-          </video>
+          />
           <div
             className="absolute inset-0"
             style={{ background: 'linear-gradient(to bottom, rgba(28,23,18,0.4) 0%, rgba(28,23,18,0.55) 55%, rgba(28,23,18,0.82) 100%)' }}
@@ -86,7 +84,7 @@ export default function Home() {
           >
             Abishkar
             <br />
-            <em style={{ fontStyle: 'italic', fontWeight: 300 }}>Joshi</em>
+            <em style={{ fontWeight: 300 }}>Joshi</em>
           </h1>
           <p className="text-base tracking-widest uppercase" style={{ color: 'rgba(245,241,234,0.65)', letterSpacing: '0.2em' }}>
             Visual Storyteller
@@ -235,12 +233,12 @@ export default function Home() {
                 className="text-xs tracking-[0.2em] uppercase px-8 py-3.5 border transition-all duration-300"
                 style={{ borderColor: 'rgba(245,241,234,0.25)', color: 'rgba(245,241,234,0.7)' }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)'
-                  ;(e.currentTarget as HTMLElement).style.color = 'var(--gold)'
+                  ; (e.currentTarget as HTMLElement).style.borderColor = 'var(--gold)'
+                    ; (e.currentTarget as HTMLElement).style.color = 'var(--gold)'
                 }}
                 onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,234,0.25)'
-                  ;(e.currentTarget as HTMLElement).style.color = 'rgba(245,241,234,0.7)'
+                  ; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(245,241,234,0.25)'
+                    ; (e.currentTarget as HTMLElement).style.color = 'rgba(245,241,234,0.7)'
                 }}
               >
                 View all collections
@@ -300,12 +298,12 @@ export default function Home() {
                 className="inline-block text-xs tracking-[0.2em] uppercase px-6 py-3 border transition-all duration-300"
                 style={{ borderColor: 'var(--terracotta)', color: 'var(--terracotta)' }}
                 onMouseEnter={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.backgroundColor = 'var(--terracotta)'
-                  ;(e.currentTarget as HTMLElement).style.color = 'var(--cream)'
+                  ; (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--terracotta)'
+                    ; (e.currentTarget as HTMLElement).style.color = 'var(--cream)'
                 }}
                 onMouseLeave={(e) => {
-                  ;(e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'
-                  ;(e.currentTarget as HTMLElement).style.color = 'var(--terracotta)'
+                  ; (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'
+                    ; (e.currentTarget as HTMLElement).style.color = 'var(--terracotta)'
                 }}
               >
                 Watch Films
