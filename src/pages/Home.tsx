@@ -84,7 +84,7 @@ export default function Home() {
           >
             Abishkar
             <br />
-            <em style={{ fontWeight: 300 }}>Joshi</em>
+            Joshi
           </h1>
           <p className="text-base tracking-widest uppercase" style={{ color: 'rgba(245,241,234,0.65)', letterSpacing: '0.2em' }}>
             Visual Storyteller
