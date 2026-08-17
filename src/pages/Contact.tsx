@@ -26,7 +26,7 @@ export default function Contact() {
     e.preventDefault()
     setState('sending')
     try {
-      const res = await fetch('https://formspree.io/f/xpzgknok', {
+      const res = await fetch('https://formsubmit.co/ajax/abiskar.joshi@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(values),
@@ -93,11 +93,11 @@ export default function Contact() {
                 <div>
                   <p className="text-xs tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--terracotta)' }}>Email</p>
                   <a
-                    href="mailto:hello@abishkarjoshi.com"
+                    href="mailto:abiskar.joshi@gmail.com"
                     className="text-sm nav-link"
                     style={{ color: 'var(--ink)' }}
                   >
-                    hello@abishkarjoshi.com
+                    abiskar.joshi@gmail.com
                   </a>
                 </div>
                 <div>
@@ -213,7 +213,7 @@ export default function Contact() {
 
                   {state === 'error' && (
                     <p className="text-xs" style={{ color: 'var(--terracotta)' }}>
-                      Something went wrong. Please try emailing directly at hello@abishkarjoshi.com
+                      Something went wrong. Please try emailing directly at abiskar.joshi@gmail.com
                     </p>
                   )}
 

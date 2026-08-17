@@ -32,7 +32,7 @@ export default function Footer() {
             Behance
           </a>
           <a
-            href="mailto:hello@abishkarjoshi.com"
+            href="mailto:abiskar.joshi@.com"
             className="text-xs tracking-[0.15em] uppercase transition-opacity hover:opacity-100"
             style={{ color: 'var(--cream)', opacity: 0.6 }}
           >
