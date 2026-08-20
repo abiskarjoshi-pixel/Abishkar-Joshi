@@ -11,7 +11,6 @@ export default function Films() {
     url: '/films',
   })
   const [activeFilm, setActiveFilm] = useState<string | null>(null)
-  const [hoverFilm, setHoverFilm] = useState<string | null>(null)
 
   const openModal = (id: string) => {
     setActiveFilm(id)
@@ -53,40 +52,30 @@ export default function Films() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
           {films.map((film, i) => (
             <RevealOnScroll key={film.id} delay={i * 80}>
+              {/*
+                All hover effects are pure CSS via the `group` class — no React state,
+                no re-renders on mouse enter/leave.
+              */}
               <div
-                className="relative group overflow-hidden cursor-pointer"
+                className="film-card relative group overflow-hidden cursor-pointer"
                 style={{ backgroundColor: '#0a0906', aspectRatio: '16/9' }}
                 onClick={() => openModal(film.id)}
-                onMouseEnter={() => setHoverFilm(film.id)}
-                onMouseLeave={() => setHoverFilm(null)}
                 data-cursor-expand
               >
                 <img
                   src={film.coverSrc}
                   alt={film.coverAlt}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:opacity-70"
+                  className="film-card__img w-full h-full object-cover"
                   loading="lazy"
-                  style={{
-                    opacity: hoverFilm === film.id ? 0.7 : 1,
-                    transform: hoverFilm === film.id ? 'scale(1.04)' : 'scale(1)',
-                    transition: 'opacity 0.5s ease, transform 0.7s ease',
-                  }}
                 />
                 <div
                   className="absolute inset-0"
                   style={{ background: 'linear-gradient(to top, rgba(10,9,6,0.9) 0%, rgba(10,9,6,0.2) 50%, transparent 100%)' }}
                 />
 
-                {/* Play button */}
+                {/* Play button — CSS-driven hover via group */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
-                    style={{
-                      background: hoverFilm === film.id ? 'var(--terracotta)' : 'rgba(245,241,234,0.15)',
-                      backdropFilter: 'blur(4px)',
-                      transform: hoverFilm === film.id ? 'scale(1.1)' : 'scale(1)',
-                    }}
-                  >
+                  <div className="film-card__play w-14 h-14 rounded-full flex items-center justify-center">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--cream)" style={{ marginLeft: '3px' }}>
                       <path d="M3 2L14 8L3 14V2Z" />
                     </svg>

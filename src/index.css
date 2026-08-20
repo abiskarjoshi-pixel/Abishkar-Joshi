@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+/* Google Fonts are now loaded via <link> tags in index.html for better performance */
 @import 'tailwindcss';
 
 @theme inline {
@@ -29,7 +28,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth is intentionally omitted — Lenis handles smooth scrolling.
+     Having both causes double-smoothing on programmatic scrolls. */
+  scroll-behavior: auto;
 }
 
 body {
@@ -135,6 +136,11 @@ body {
   .masonry-grid-item { margin-bottom: 12px; }
 }
 
+/* Parallax hero image */
+.parallax-hero-img {
+  will-change: transform;
+}
+
 /* Parallax hero text */
 .parallax-layer {
   will-change: transform;
@@ -235,6 +241,45 @@ body {
 .mobile-menu.open .mobile-menu-link:nth-child(4) { transition-delay: 0.25s; }
 @media (prefers-reduced-motion: reduce) {
   .mobile-menu-link { opacity: 1; transform: none; transition: none; }
+}
+
+/* Selected Works grid cards — CSS-only hover, no React state */
+.work-card {
+  /* Promote each card to its own layer so hover transforms don't repaint siblings */
+  contain: layout style;
+}
+.work-card__img {
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+.work-card:hover .work-card__img {
+  transform: scale(1.04);
+}
+.work-card__overlay {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.work-card:hover .work-card__overlay {
+  opacity: 1;
+}
+
+/* Film card — CSS-only hover, no React state re-renders */
+.film-card__img {
+  transition: opacity 0.5s ease, transform 0.7s ease;
+  will-change: transform;
+}
+.film-card:hover .film-card__img {
+  opacity: 0.7;
+  transform: scale(1.04);
+}
+.film-card__play {
+  background: rgba(245, 241, 234, 0.15);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.film-card:hover .film-card__play {
+  background: var(--terracotta);
+  transform: scale(1.1);
 }
 
 /* Video modal */

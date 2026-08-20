@@ -17,8 +17,8 @@ const allProjects: (Project & { collectionName: string })[] = collections.flatMa
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const heroImgRef = useRef<HTMLImageElement>(null)
   const [scrolled, setScrolled] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
   const [activeTab, setActiveTab] = useState<Tab>('All Works')
   const navigate = useNavigate()
 
@@ -29,16 +29,27 @@ export default function Home() {
   })
 
   useEffect(() => {
+    let ticking = false
     const onScroll = () => {
-      const y = window.scrollY
-      setScrollY(y)
-      if (y > 80) setScrolled(true)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY
+          // Drive parallax directly on DOM refs — no React re-render
+          if (heroImgRef.current) {
+            heroImgRef.current.style.transform = `translateY(${Math.min(y * 0.3, 200)}px)`
+          }
+          if (contentRef.current) {
+            contentRef.current.style.transform = `translateY(${-y * 0.15}px)`
+          }
+          if (y > 80) setScrolled(true)
+          ticking = false
+        })
+        ticking = true
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  const parallaxY = Math.min(scrollY * 0.3, 200)
 
   const filtered = activeTab === 'All Works'
     ? allProjects
@@ -54,10 +65,12 @@ export default function Home() {
       >
         <div className="absolute inset-0 overflow-hidden">
           <img
+            ref={heroImgRef}
             src={heroImg}
             alt="Abishkar Joshi"
             className="w-full h-full object-cover"
-            style={{ transform: `translateY(${parallaxY}px)`, transition: 'none' }}
+            fetchPriority="high"
+            style={{ willChange: 'transform', transition: 'none' }}
           />
           <div
             className="absolute inset-0"
@@ -68,7 +81,7 @@ export default function Home() {
         <div
           ref={contentRef}
           className="parallax-layer relative z-10 h-full flex flex-col justify-end pb-20 px-6 md:px-12 lg:px-20"
-          style={{ transform: `translateY(${-scrollY * 0.15}px)` }}
+          style={{ willChange: 'transform' }}
         >
           <p className="text-xs tracking-[0.35em] uppercase mb-6 font-medium" style={{ color: '#ffffff' }}>
             PHOTOGRAPHY · FILMS · DESIGN
@@ -126,7 +139,7 @@ export default function Home() {
                 I make images that hold something — a quality of light, a moment of stillness, the texture of a place.
               </p>
               <p className="mt-6 text-sm leading-relaxed" style={{ color: 'rgba(33,29,24,0.6)', maxWidth: '52ch' }}>
-                Fifteen years shooting across Nepal and South Asia. Weddings, portraits, landscapes, editorial,
+                Eight years shooting across Nepal and South Asia. Weddings, portraits, landscapes, editorial,
                 documentary film. The camera is always in service of the story.
               </p>
             </div>
@@ -163,12 +176,13 @@ export default function Home() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className="text-[10px] tracking-[0.2em] uppercase px-4 py-2 border transition-all duration-250"
+                    className="text-[10px] tracking-[0.2em] uppercase px-4 py-2 border"
                     style={{
                       backgroundColor: isActive ? 'var(--gold)' : 'transparent',
                       borderColor: isActive ? 'var(--gold)' : 'rgba(245,241,234,0.25)',
                       color: isActive ? 'var(--charcoal)' : 'rgba(245,241,234,0.7)',
                       fontWeight: isActive ? 500 : 400,
+                      transition: 'background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease',
                     }}
                   >
                     {tab}
@@ -186,9 +200,12 @@ export default function Home() {
             style={{ columnGap: '8px' }}
           >
             {filtered.map((project, i) => (
-              <RevealOnScroll key={`${activeTab}-${project.id}`} delay={i * 50} className="masonry-grid-item">
+              // No RevealOnScroll wrapper — animating 20+ cards simultaneously
+              // floods the compositor. Cards are visible immediately; the section
+              // header already has a reveal, which is sufficient.
+              <div key={`${activeTab}-${project.id}`} className="masonry-grid-item">
                 <div
-                  className="relative group overflow-hidden cursor-pointer"
+                  className="work-card relative overflow-hidden cursor-pointer"
                   style={{ marginBottom: '8px', backgroundColor: '#0f0c09' }}
                   onClick={() => navigate(`/project/${project.slug}`)}
                   data-cursor-expand
@@ -196,7 +213,7 @@ export default function Home() {
                   <img
                     src={project.coverSrc}
                     alt={project.coverAlt}
-                    className="w-full block transition-transform duration-700 group-hover:scale-103"
+                    className="work-card__img w-full block"
                     loading="lazy"
                     style={{
                       display: 'block',
@@ -204,9 +221,8 @@ export default function Home() {
                       objectFit: 'cover',
                     }}
                   />
-                  {/* Hover reveal */}
-                  <div
-                    className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-350"
+                  {/* Hover overlay — CSS only, no JS */}
+                  <div className="work-card__overlay absolute inset-0 flex flex-col justify-end p-5 md:p-6"
                     style={{ background: 'linear-gradient(to top, rgba(10,8,6,0.88) 0%, transparent 55%)' }}
                   >
                     <p className="text-[10px] tracking-[0.2em] uppercase mb-1" style={{ color: 'var(--terracotta)' }}>
@@ -221,7 +237,7 @@ export default function Home() {
                     <p className="text-xs mt-1" style={{ color: 'rgba(245,241,234,0.55)' }}>{project.location}</p>
                   </div>
                 </div>
-              </RevealOnScroll>
+              </div>
             ))}
           </div>
 
